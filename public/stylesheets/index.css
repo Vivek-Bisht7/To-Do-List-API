@@ -39,10 +39,42 @@ body{
     width: 310px;
     margin: 10px;
     overflow: hidden;
+    border-radius: 20px;
+    border-right: 5px solid rgb(201, 200, 200);
+    border-bottom: 5px solid rgb(201, 200, 200);
+    position: relative;
+}
+
+.task h1{
+    background-color: #000;
+    color: #fff;
+    padding: 20px 0px 20px 0px;
+    position: relative;
+    top: 0px;
+    margin: 0px;
 }
 
 .heading a{
     margin: 10px;
     text-decoration: none;
     color: #fff;
+}
+
+.buttons{
+    position: absolute;
+    bottom: 15px;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.buttons a{
+    text-decoration: none;
+    color: black;
+    bottom: 0px; 
+}
+
+.buttons a:hover {
+    background-color: gray;
+    color: white;
 }

@@ -22,4 +22,19 @@ const readtasks = async (req,res)=>{
      res.render('index' ,{tasks});
 }
 
-module.exports = {taskCreate , show , readtasks};
+const taskDelete = async(req,res)=>{
+     try{
+          const deleteTask = await Task.findByIdAndDelete(req.params.id);
+          console.log("Successfully deleted task..");
+          res.redirect("/task");
+     }
+     catch(error){
+          console.log("Unable to delete task.." + error.message);
+     }
+}
+
+const taskUpdate = async(req,res)=>{
+     
+}
+
+module.exports = {taskCreate , show , readtasks , taskDelete , taskUpdate};
