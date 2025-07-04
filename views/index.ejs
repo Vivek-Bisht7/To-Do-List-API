@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/stylesheets/index.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/stylesheets/index.css" />
+  </head>
+  <body>
     <div class="heading">
-        <h1>To-Do-List</h1>
+      <h1>To-Do-List</h1>
     </div>
-    <div class="form_container">
-        <form action="/task/create" method="post">
-            <div class="form_items">
-                <input type="text" placeholder="Enter the task" name="task">
-                <input type="text" placeholder="Enter task's description" name="desc">
-                <button type="submit">Submit</button>
-            </div>
-        </form>
+    <div class="heading">
+      <a href="/task/create">Create task</a>
     </div>
-</body>
+
+    <div class="tasks">
+      <% if(tasks.length===0) {%>
+      <h1> No tasks yet.</h1>
+      <% } else {%> <% tasks.forEach(task =>{ %>
+      <div class="task">
+        <h1><%= task.task %></h1>
+        <p><%= task.desc %></p>
+      </div>
+      <% })} %>
+    </div>
+  </body>
 </html>

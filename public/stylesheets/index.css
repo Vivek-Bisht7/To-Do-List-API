@@ -25,3 +25,24 @@ body{
 .form_items button{
     cursor: pointer;
 }
+
+.tasks{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.task{
+    background-color: #fff;
+    height: 300px;
+    width: 310px;
+    margin: 10px;
+    overflow: hidden;
+}
+
+.heading a{
+    margin: 10px;
+    text-decoration: none;
+    color: #fff;
+}

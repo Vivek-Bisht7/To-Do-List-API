@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const dbConnection = require('./config/task_connection');
-const task = require('./models/task_model');
 const taskRoutes = require('./routes/task_routes');
 
 dbConnection("mongodb://127.0.0.1:27017/db");
