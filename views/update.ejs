@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/index.css">
+</head>
+<body>
+    <div class="heading">
+        <h1>[Update task]</h1>
+    </div>
+    <div class="form_container">
+        <form action="/task/update/<%= task._id %>" method="post">
+            <div class="form_items">
+                <input type="text" placeholder="Enter the task" name="task" value="<%= task.task %>">
+                <input type="text" placeholder="Enter task's description" name="desc" value= "<%= task.desc %>">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

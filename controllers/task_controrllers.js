@@ -33,8 +33,20 @@ const taskDelete = async(req,res)=>{
      }
 }
 
-const taskUpdate = async(req,res)=>{
-     
+const update = async (req,res)=>{
+     const task = await Task.findById(req.params.id);
+     res.render('update',{task});
 }
 
-module.exports = {taskCreate , show , readtasks , taskDelete , taskUpdate};
+const taskUpdate = async(req,res)=>{
+     try{
+          await Task.findByIdAndUpdate(req.params.id,req.body);
+          res.redirect('/task');
+          console.log("Task updated successfully");
+     }
+     catch(err){
+          console.log('Error while updating' + err.message);
+     }
+}
+
+module.exports = {taskCreate , show , readtasks , taskDelete , taskUpdate ,update};
