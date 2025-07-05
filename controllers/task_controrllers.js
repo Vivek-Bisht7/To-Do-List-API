@@ -2,8 +2,10 @@ const Task = require('../models/task_model');
 
 const taskCreate = async (req,res)=>{
    try{
-        const task = new Task(req.body);
-        await task.save();
+        const {task,desc,user} = req.body;
+
+        const newTask = new Task(task,desc,user);
+        await newTask.save();
         console.log("Task added successfully");
         res.redirect('/task');
    }
@@ -18,7 +20,8 @@ const show = (req,res)=>{
 }
 
 const readtasks = async (req,res)=>{
-     const tasks = await Task.find();
+     const userId = req.query.user;
+     const tasks = await Task.find({user:userId});
      res.render('index' ,{tasks});
 }
 

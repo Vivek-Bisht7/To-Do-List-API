@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const dbConnection = require('./config/task_connection');
 const taskRoutes = require('./routes/task_routes');
+const userRoutes = require('./routes/user_routes');
 
 dbConnection("mongodb://127.0.0.1:27017/db");
 
@@ -14,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname,'public')));
 app.use('/task' , taskRoutes);
-
+app.use('/' , userRoutes);
 
 
 app.listen(3000 , ()=>{
