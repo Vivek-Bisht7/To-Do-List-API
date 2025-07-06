@@ -9,13 +9,14 @@ body{
     background-color: black;
 }
 
-.heading h1{
+.heading h1 ,h4{
     color: white;
 }
 
 .heading a{
     background-color: rgb(77, 77, 77);
     padding: 20px;
+    border-radius: 20px;
 }
 
 .form_items input{

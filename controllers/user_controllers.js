@@ -24,4 +24,32 @@ const userRegistration = async (req,res)=>{
     }
 }
 
-module.exports = {userRegistration , register};
+const loginShow = (req,res)=>{
+    res.render('login');
+}
+
+const login = async (req,res)=>{
+    try{
+        const {email,password} = req.body;
+        const user = await User.findOne({email});
+        if(!user){
+            return res.status(400).json({message:"Either email or password is incorrect"});
+        }
+        const isMatch = await bcrypt.compare(password,user.password);
+            if(isMatch){
+                console.log("User logged in successfully");
+                res.redirect('/task');
+            }
+            else{
+                return res.status(400).json({message:"Either email or password is incorrect"});
+            }
+        
+    }
+    catch(err){
+        console.log("error while making user login");
+        res.status(500).json({success:false,message:"error while making user login  " + err.message});
+    }
+}
+
+
+module.exports = {userRegistration , register ,loginShow,login};
