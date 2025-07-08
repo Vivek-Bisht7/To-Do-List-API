@@ -1,5 +1,6 @@
 const User = require('../models/user_model');
 const bcrypt = require('bcrypt');
+const {generateToken} = require('../utils/jwt');
 
 const register = (req,res)=>{
      res.render('user_register');
@@ -13,7 +14,7 @@ const userRegistration = async (req,res)=>{
             return res.status(400).json({ message: "User already exists" });
         }
         const hashedPassword = await bcrypt.hash(password,10);
-
+ 
         const user = new User({name:username,email,password:hashedPassword});
         await user.save();
         res.redirect('/login');
@@ -38,6 +39,11 @@ const login = async (req,res)=>{
         const isMatch = await bcrypt.compare(password,user.password);
             if(isMatch){
                 console.log("User logged in successfully");
+                const token = generateToken(user._id);
+                res.cookie('token',token,{
+                    httpOnly: true,
+                    maxAge: 86400000
+                });
                 res.redirect('/task');
             }
             else{
@@ -51,5 +57,11 @@ const login = async (req,res)=>{
     }
 }
 
+const logout = (req, res) => {
+    res.clearCookie('token');
+    res.redirect('/login');
+};
 
-module.exports = {userRegistration , register ,loginShow,login};
+
+
+module.exports = {userRegistration , register ,loginShow,login,logout};
