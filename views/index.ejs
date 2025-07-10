@@ -14,6 +14,11 @@
       <a href="/task/create">Create task</a>
     </div>
 
+    <form action="/task" method="get" class="heading">
+      <input type="text" name="search" placeholder="Search tasks...">
+      <button type="submit">Search</button>
+    </form>
+
 
       <div class="tasks">
       <% if(paginate_tasks.length===0) {%>
@@ -33,13 +38,13 @@
 <% if(paginate_tasks.length!==0) {%>
         <div class="button_container">
           <% if(currentPage>1 && currentPage<=totalPages){ %>
-            <a href="/task?page=<%=currentPage-1%>&limit=<%=limit%>" class="page_button">Previous</a>
+            <a href="/task?page=<%=currentPage-1%>&limit=<%=limit%>&search=<%=search%>" class="page_button">Previous</a>
           <% } else{%>
             <a style="visibility: hidden;">Previous</a>
             <%}%>
           <span>Page <%= currentPage %> of <%= totalPages %></span>
           <% if(currentPage<totalPages){ %>
-            <a href="/task?page=<%=currentPage+1%>&limit=<%=limit%>" class="page_button">Next</a>
+            <a href="/task?page=<%=currentPage+1%>&limit=<%=limit%>&search=<%=search%>" class="page_button">Next</a>
           <% } else{%>
             <a style="visibility: hidden;">Previous</a>
             <%}%>

@@ -21,7 +21,16 @@ const show = (req,res)=>{
 
 const readtasks = async (req,res)=>{
      const userId = req.user.id;
-     const tasks = await Task.find({user:userId});
+     const search = req.query.search || "";
+
+     const query = {
+          user : userId,
+          $or : [
+               {task:{$regex:search,$options:"i"}},
+               {desc:{$regex:search,$options:"i"}}
+          ]
+     };
+     const tasks = await Task.find(query);
 
      const page = parseInt(req.query.page) || 1;
      const limit = parseInt(req.query.limit) || 10;
@@ -31,7 +40,7 @@ const readtasks = async (req,res)=>{
     
      const paginate_tasks = tasks.slice(startIndex, endIndex);
 
-     res.render('index' ,{paginate_tasks , currentPage:page,totalPages : Math.ceil(total/limit),limit});
+     res.render('index' ,{paginate_tasks , currentPage:page,totalPages : Math.ceil(total/limit),limit , search});
 }
 
 const taskDelete = async(req,res)=>{
