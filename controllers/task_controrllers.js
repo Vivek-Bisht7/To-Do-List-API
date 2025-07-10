@@ -22,7 +22,16 @@ const show = (req,res)=>{
 const readtasks = async (req,res)=>{
      const userId = req.user.id;
      const tasks = await Task.find({user:userId});
-     res.render('index' ,{tasks});
+
+     const page = parseInt(req.query.page) || 1;
+     const limit = parseInt(req.query.limit) || 10;
+     const startIndex = (page-1)*limit;
+     const total = tasks.length;
+     const endIndex = page * limit;
+    
+     const paginate_tasks = tasks.slice(startIndex, endIndex);
+
+     res.render('index' ,{paginate_tasks , currentPage:page,totalPages : Math.ceil(total/limit),limit});
 }
 
 const taskDelete = async(req,res)=>{

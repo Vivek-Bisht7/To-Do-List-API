@@ -84,3 +84,25 @@ body{
     background-color: gray;
     color: white;
 }
+
+.button_container{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.page_button{
+    cursor: pointer;
+    background-color: transparent;
+    height: 50px;
+    width: 100px;
+    margin: 10px;
+    border: 1px solid black;
+    padding-left: 15px;
+    padding-top: 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+
